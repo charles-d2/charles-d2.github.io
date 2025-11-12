@@ -9,6 +9,9 @@ body {
     color: rgb(0, 0, 0);
     font-weight: normal;
 }
+.bold {
+    font-weight: bold;
+}
 a {
     color: rgb(32, 0, 139);
     text-decoration: none;
