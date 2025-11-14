@@ -1,26 +1,172 @@
-<!-- 
- Charles Dangerfield
- IS 201
-  -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>Piano practice</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/layoutstyles.css">
 </head>
+
 <body>
-    <a id="top" href="../index.html">Resume</a> | <a href="scratch_page.html">Piano</a> | <a href="#">Web App</a>
-    <h1>About Me</h1>
-    <p class="justify">
-        Hello! My name is Charles Dangerfield, and I am a Pre-Accounting major at Brigham Young University. I am passionate about numbers and enjoy working with data to uncover insights that can help businesses make informed decisions. In my free time, I enjoy running, playing piano, and spending time with friends and family.
-    </p>
-    <p>Something Interesting</p>
-    <p class="box1">This paragraph is for <span class="bold box1"> demonstration</span> purposes.</p>
-    <p class="box1 box2">This paragraph is for <span class="bold box1 box2"> demonstration</span> purposes.</p>
-    <p class="box1 box2 box3">This paragraph is for <span class="bold box1 box3"> demonstration</span> purposes.</p>
-    <img src="../images/piano.jpg" alt="image of steinway piano">
+    <div class="header">
+        <a class="white_link" id="top" href="../index.html">Resume</a> | 
+        <a class="white_link" href="#">Piano</a> | 
+        <a class="white_link" href="webapp.html">Web App</a>
+        <h1>Piano Practice</h1>
+    </div>
+
+    <div class="layout container">
+        <div class="left"></div>
+
+        <div class="mainbody">
+<h2>Interactive Piano Practice</h2>
+
+<p>
+    Welcome to my piano practice webapp! I’ve always loved exploring music and finding new
+    ways to connect with the piano, so I built this simple interactive tool to experiment with
+    sound directly in the browser. This one–octave keyboard lets you click each key to hear
+    its pitch, making it a fun way to review note names, intervals, or basic ear–training.
+</p>
+
+<p>
+    Feel free to try each note, compare different tones, or just play around. I plan on
+    expanding this tool over time with additional octaves, presets, and interactive features.
+    For now, enjoy this small digital keyboard!
+</p>
+
+<hr style="margin: 25px 0;">
+
+            <!-- ----------------------- -->
+            <!-- 🎹 YOUR PIANO WEB APP  -->
+            <!-- ----------------------- -->
+
+            <style>
+                .piano {
+                    display: flex;
+                    position: relative;
+                    height: 200px;
+                    margin-top: 20px;
+                }
+
+                .white-key {
+                    width: 60px;
+                    height: 200px;
+                    background: white;
+                    border: 1px solid #ccc;
+                    box-sizing: border-box;
+                    border-radius: 0 0 5px 5px;
+                    cursor: pointer;
+                    position: relative;
+                    transition: background 0.1s, transform 0.1s;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    padding-top: 5px;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+
+                .white-key.playing {
+                    background: #e0e0e0;
+                    transform: translateY(2px);
+                }
+
+                .black-key {
+                    width: 40px;
+                    height: 120px;
+                    background: black;
+                    color: white;
+                    position: absolute;
+                    border-radius: 0 0 5px 5px;
+                    z-index: 2;
+                    cursor: pointer;
+                    margin-left: -20px;
+                    transition: background 0.1s, transform 0.1s;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    padding-top: 5px;
+                    font-weight: bold;
+                    font-size: 12px;
+                }
+
+                .black-key.playing {
+                    background: #333;
+                    transform: translateY(2px);
+                }
+            </style>
+
+            <div class="piano">
+                <div class="white-key" data-note="C4">C</div>
+                <div class="white-key" data-note="D4">D</div>
+                <div class="white-key" data-note="E4">E</div>
+                <div class="white-key" data-note="F4">F</div>
+                <div class="white-key" data-note="G4">G</div>
+                <div class="white-key" data-note="A4">A</div>
+                <div class="white-key" data-note="B4">B</div>
+                <div class="white-key" data-note="C5">C</div>
+
+                <div class="black-key" data-note="C#4" style="left: 45px;">C#</div>
+                <div class="black-key" data-note="D#4" style="left: 105px;">D#</div>
+                <div class="black-key" data-note="F#4" style="left: 225px;">F#</div>
+                <div class="black-key" data-note="G#4" style="left: 285px;">G#</div>
+                <div class="black-key" data-note="A#4" style="left: 345px;">A#</div>
+            </div>
+
+            <script>
+                const audio = new (window.AudioContext || window.webkitAudioContext)();
+
+                const frequencies = {
+                    "C4": 261.63, "C#4": 277.18,
+                    "D4": 293.66, "D#4": 311.13,
+                    "E4": 329.63,
+                    "F4": 349.23, "F#4": 369.99,
+                    "G4": 392.00, "G#4": 415.30,
+                    "A4": 440.00, "A#4": 466.16,
+                    "B4": 493.88,
+                    "C5": 523.25
+                };
+
+                function playNote(note, element) {
+                    const osc = audio.createOscillator();
+                    const gain = audio.createGain();
+
+                    osc.frequency.value = frequencies[note];
+                    osc.type = "sine";
+
+                    osc.connect(gain);
+                    gain.connect(audio.destination);
+
+                    gain.gain.setValueAtTime(0.3, audio.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 1);
+
+                    osc.start();
+                    osc.stop(audio.currentTime + 1);
+
+                    element.classList.add("playing");
+                    setTimeout(() => element.classList.remove("playing"), 150);
+                }
+
+                document.querySelectorAll("[data-note]").forEach(key => {
+                    key.addEventListener("mousedown", () => {
+                        const note = key.getAttribute("data-note");
+                        playNote(note, key);
+                    });
+                });
+            </script>
+
+        </div>
+
+        <div class="right"></div>
+    </div>
+
+    <div class="footer">
+        <a class="link_hidden" href="https://charlesjdangerfield.com" target="_blank">www.charlesjdangerfield.com</a> 
+        | &copy; 2025 Charles Dangerfield
+    </div>
+
 </body>
 </html>
