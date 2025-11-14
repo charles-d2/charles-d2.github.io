@@ -1,12 +1,10 @@
-body {
+/* body {
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .common {
     background-color: white;
-    /* border: 2px solid white; */
-    position: absolute;
 }
 
 .header {
@@ -16,6 +14,15 @@ body {
     height: 100px;
     z-index: 2;
     border-bottom: 1px solid black;
+
+
+    background-image: url('../images/piano-keyboard.jpg');
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 1px 1px 3px black;
 }
 
 .left {
@@ -26,7 +33,9 @@ body {
     padding-top: 30px;
     border-right: 1px solid black;
     padding-right: 5px;
+    background-image: url('../images/notes_bg.jpg');
 }
+
 
 .mainbody {
     top: 114px;
@@ -44,6 +53,7 @@ body {
     bottom: 39px;
     border-left: 1px solid black;
     padding-left: 5px;
+    background-image: url('../images/notes_bg.jpg');
 }
 
 .footer {
@@ -59,4 +69,81 @@ body {
 
 .subheader {
     float: right;   
+} */
+
+
+body {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
+
+/* Header stays at top normally */
+.header {
+    height: 100px;
+    border-bottom: 1px solid black;
+    padding: 10px;
+
+    background-image: url('../images/piano-keyboard.jpg');
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+
+/* Layout below header */
+/* .layout {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 100px - 40px);
+} */
+
+/* Left Sidebar */
+.left {
+    width: 100px;
+    padding: 30px 5px;
+    border-right: 1px solid black;
+    background-image: url('../images/notes_bg.jpg');
+    background-repeat: repeat;
+    background-size: auto; 
+    position: relative;
+    z-index: 2; /* above footer */
+}
+
+/* Main Content */
+.mainbody {
+    flex: 1;
+    padding: 20px;
+}
+
+.right {
+    width: 100px;
+    padding: 30px 5px;
+    border-left: 1px solid black;
+    background-image: url('../images/notes_bg.jpg');
+    background-repeat: repeat;
+    background-size: auto; 
+    position: relative;
+    z-index: 2; /* above footer */
+}
+
+/* Footer stays at bottom */
+.footer {
+    height: 40px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 10px;
+    position: relative;
+    z-index: 1; /* BELOW sidebars */
+}
+
+.layout.container {
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100vh - 40px); /* subtract footer height */
+    position: relative;
+    z-index: 2; /* so sidebars sit on top */
+}
+

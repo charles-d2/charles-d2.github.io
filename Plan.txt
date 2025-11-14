@@ -2,7 +2,7 @@
 
 
 Pages:
-    Bootstrap Resume Page
+    Bootstrap Resume Page ✅
     Scratch page (about piano)
     Web App Page
 
@@ -12,18 +12,18 @@ Pages:
 In general:
 The site must be professional in appearance. One way to do this is using a bootstrap theme (which we recommend). 
 We will deduct points for clear aesthetic errors anywhere on your site that reduce readability or are distracting
-    The site must be hosted online (e.g., via GitHub pages).
+    The site must be hosted online (e.g., via GitHub pages).✅
     The site must not have any broken content: images, links, videos, etc., incuding social icon links.
-    The site must include a résumé portion created in HTML (not as a PDF). 
-        This should be a useful resume with good information organized in an easy-to-access way. 
-        Useful information includes your education, work experience, skills, and possibly some awards or honors that distinguish you. 
-        You do not need to include your contact information unless you want to. 
-        The résumé content can appear in your professional pages or your scratch page, or both.
+    The site must include a résumé portion created in HTML (not as a PDF). ✅
+        This should be a useful resume with good information organized in an easy-to-access way. ✅
+        Useful information includes your education, work experience, skills, and possibly some awards or honors that distinguish you. ✅
+        You do not need to include your contact information unless you want to. ✅
+        The résumé content can appear in your professional pages or your scratch page, or both.✅
 
 
 From-scratch page:
     This page must be created from a blank HTML file.
-    It can be about anything. Pick a hobby, or a passion, or something that fascinates you.
+    It can be about anything. Pick a hobby, or a passion, or something that fascinates you.✅
     It must include the following as a demonstration of your ability to write HTML and CSS:
         An unordered list embedded in an ordered list (or the other way around)
         At least one image not from the Bootstrap theme (feel free to have many more)
